@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Dearest Sis ♥</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rose: #e8b4c8;
+    --rose-deep: #c4728f;
+    --rose-dark: #7a3555;
+    --blush: #f7e8ef;
+    --gold: #c9934a;
+    --gold-light: #f3e0c5;
+    --cream: #fdf6f0;
+    --sage: #7a9e8a;
+    --sage-light: #c8ddd0;
+    --ink: #2a1f2e;
+    --muted: #7a6b75;
+    --lavender: #b8a9d4;
+    --lav-light: #ede7f8;
+  }
+
+  html, body {
+    min-height: 100vh;
+    background: #f9f1f5;
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 680px;
+  }
+
+  /* DOTS */
+  .dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+  }
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--rose);
+    opacity: 0.3;
+    transition: all 0.4s;
+    cursor: pointer;
+    border: none;
+  }
+  .dot.active { opacity: 1; transform: scale(1.35); background: var(--rose-deep); }
+
+  /* PAGE TRANSITIONS */
+  .page { display: none; animation: fsi 0.55s ease forwards; }
+  .page.active { display: block; }
+  @keyframes fsi { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+  @keyframes sparkleAnim { 0%,100% { opacity: .2; transform: scale(.8); } 50% { opacity: .7; transform: scale(1.2); } }
+
+  /* ── CARD PANELS ── */
+  .panel {
+    border-radius: 24px;
+    padding: 3.5rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* COVER */
+  .panel-cover {
+    background: linear-gradient(145deg, #fdf0f5 0%, #f5e6f0 40%, #ede7f8 100%);
+    border: 1px solid var(--rose);
+    text-align: center;
+    padding: 4rem 2.5rem 3.5rem;
+  }
+  .cover-tag {
+    display: inline-block;
+    font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--rose-deep); background: rgba(232,180,200,.3);
+    padding: 5px 14px; border-radius: 20px; margin-bottom: 1.8rem; font-weight: 500;
+  }
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px; line-height: 1.1; color: var(--rose-dark); margin-bottom: .5rem;
+  }
+  .cover-title em { font-style: italic; color: var(--rose-deep); }
+  .cover-sub { font-size: 15px; color: var(--muted); margin-bottom: 2.5rem; font-weight: 300; line-height: 1.7; }
+  .heart-row { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 2rem; }
+  .hline { width: 60px; height: 1px; background: var(--rose); }
+  .heart { font-size: 22px; color: var(--rose-deep); animation: pulse 2.5s ease-in-out infinite; }
+  .cover-sign { font-size: 13px; color: var(--muted); font-style: italic; font-family: 'Playfair Display', serif; }
+
+  /* ALWAYS THERE */
+  .panel-always {
+    background: linear-gradient(150deg, #f0f6f2 0%, #e8f2ec 60%, #f7f0f7 100%);
+    border: 1px solid var(--sage-light);
+  }
+  .deco-circle {
+    position: absolute; border-radius: 50%; opacity: .08; background: var(--sage);
+  }
+  .page-header { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; font-weight: 500; margin-bottom: 1rem; }
+  .big-q { font-family: 'Playfair Display', serif; font-size: 36px; line-height: 1.25; color: var(--ink); margin-bottom: 1.5rem; }
+  .big-q em { font-style: italic; }
+  .btext { font-size: 15px; line-height: 1.8; color: var(--muted); font-weight: 300; }
+  .accent-block {
+    margin-top: 1.8rem; padding: 1.2rem 1.5rem;
+    background: rgba(122,158,138,.12);
+    border-left: 3px solid var(--sage);
+    border-radius: 0 12px 12px 0;
+  }
+  .accent-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 17px; color: var(--ink); line-height: 1.6; }
+
+  /* CHEERLEADER */
+  .panel-cheer {
+    background: linear-gradient(135deg, #fffbf0 0%, #fdf3e0 50%, #fdf0f5 100%);
+    border: 1px solid var(--gold-light);
+  }
+  .star-row { display: flex; gap: 8px; margin-bottom: 1.2rem; }
+  .star { color: var(--gold); font-size: 16px; }
+  .cheer-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 1.8rem; }
+  .cheer-card { background: white; border-radius: 16px; padding: 1.2rem; border: 1px solid var(--gold-light); }
+  .cn { font-size: 30px; font-family: 'Playfair Display', serif; font-weight: 600; color: var(--gold-light); line-height: 1; margin-bottom: 4px; }
+  .ct { font-size: 13px; line-height: 1.6; color: var(--ink); }
+  .sparkle { position: absolute; border-radius: 50%; animation: sparkleAnim 3s ease-in-out infinite; }
+
+  /* MEMORIES */
+  .panel-memories {
+    background: linear-gradient(160deg, #f0ecf8 0%, #e9e4f5 50%, #f5e8ef 100%);
+    border: 1px solid var(--lavender);
+  }
+  .moments { display: flex; flex-direction: column; gap: 12px; }
+  .moment {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 1rem 1.2rem;
+    background: rgba(255,255,255,.65);
+    border-radius: 14px;
+    border: 1px solid rgba(184,169,212,.3);
+  }
+  .mi { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .mt { font-size: 14px; line-height: 1.7; color: var(--ink); }
+  .mt strong { font-weight: 500; color: #5a3e7a; display: block; font-size: 13px; margin-bottom: 2px; }
+
+  /* PHOTOS */
+  .panel-photos {
+    background: linear-gradient(140deg, #fdf6f0 0%, #f8edf4 50%, #ede7f8 100%);
+    border: 1px solid var(--rose);
+    padding: 3rem 2.5rem;
+  }
+  .photo-title { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--ink); margin-bottom: .4rem; line-height: 1.25; }
+  .photo-title em { font-style: italic; color: var(--rose-deep); }
+  .photo-sub { font-size: 14px; color: var(--muted); font-weight: 300; margin-bottom: 1.8rem; }
+  .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px; }
+  .photo-grid-bot { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .frame {
+    border-radius: 16px; overflow: hidden; position: relative;
+    cursor: pointer; border: 2px dashed var(--rose);
+    background: rgba(232,180,200,.08);
+    transition: all .25s;
+  }
+  .frame:hover { border-color: var(--rose-deep); background: rgba(232,180,200,.16); }
+  .frame-inner {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; padding: 1.5rem 1rem; text-align: center;
+  }
+  .frame-inner.tall { min-height: 200px; }
+  .frame-inner.short { min-height: 130px; }
+  .frame-icon { font-size: 30px; color: var(--rose); margin-bottom: 10px; opacity: .7; }
+  .frame-label { font-size: 12px; color: var(--rose-deep); font-weight: 500; margin-bottom: 4px; }
+  .frame-hint { font-size: 11px; color: var(--muted); font-weight: 300; line-height: 1.5; }
+  .frame-tag {
+    position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+    background: rgba(255,255,255,.92); border-radius: 20px; padding: 3px 12px;
+    font-size: 11px; color: var(--rose-dark); font-weight: 500; white-space: nowrap;
+  }
+  .photo-added { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; border-radius: 14px; }
+  .upload-hint {
+    margin-top: 1rem; text-align: center; padding: .9rem 1rem;
+    background: rgba(232,180,200,.1);
+    border-radius: 12px; border: 1px solid rgba(232,180,200,.3);
+  }
+  .upload-hint p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .upload-hint strong { color: var(--rose-dark); font-weight: 500; }
+
+  /* FINAL */
+  .panel-final {
+    background: linear-gradient(135deg, #2a1f2e 0%, #3d2545 50%, #4a2a40 100%);
+    text-align: center;
+    padding: 4rem 2.5rem 3.5rem;
+  }
+  .final-glow {
+    position: absolute; border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,180,200,.18) 0%, transparent 70%);
+    width: 420px; height: 420px; top: -110px; left: 50%;
+    transform: translateX(-50%); pointer-events: none;
+  }
+  .fi { position: relative; z-index: 1; }
+  .ft { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--rose); font-weight: 500; margin-bottom: 1.5rem; opacity: .8; }
+  .ftt { font-family: 'Playfair Display', serif; font-size: 40px; color: #f9eef4; line-height: 1.2; margin-bottom: 1.2rem; }
+  .ftt em { font-style: italic; color: var(--rose); }
+  .fb { font-size: 15px; line-height: 1.85; color: rgba(249,238,244,.75); font-weight: 300; max-width: 460px; margin: 0 auto 1.5rem; }
+  .ytb {
+    margin-top: 1.5rem; background: rgba(255,255,255,.07);
+    border-radius: 16px; padding: 1.2rem 1.5rem;
+    border: 1px solid rgba(232,180,200,.25);
+  }
+  .ytl { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--rose); opacity: .7; margin-bottom: 8px; font-weight: 500; }
+  .yti {
+    width: 100%; background: transparent; border: none; outline: none;
+    color: #f9eef4; font-size: 14px; font-family: 'DM Sans', sans-serif;
+    font-weight: 300; line-height: 1.7; resize: none;
+  }
+  .yti::placeholder { color: rgba(249,238,244,.32); }
+  .fhearts { display: flex; justify-content: center; gap: 10px; margin-top: 1.2rem; }
+  .fh { font-size: 18px; color: var(--rose); opacity: .6; animation: pulse 2.5s ease-in-out infinite; }
+  .fh:nth-child(2) { animation-delay: .4s; font-size: 26px; opacity: 1; }
+  .fh:nth-child(3) { animation-delay: .8s; }
+  .fsign { font-family: 'Playfair Display', serif; font-style: italic; font-size: 22px; color: var(--rose); margin-top: 1rem; }
+
+  /* NAV */
+  .nav { display: flex; align-items: center; justify-content: space-between; margin-top: 1.4rem; padding: 0 .5rem; }
+  .nb {
+    background: transparent; border: 1px solid var(--rose);
+    color: var(--rose-deep); border-radius: 50px;
+    padding: 9px 24px; font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    transition: all .25s; letter-spacing: .03em;
+  }
+  .nb:hover { background: var(--rose); color: white; transform: translateY(-1px); }
+  .nb.dk { border-color: rgba(232,180,200,.5); color: var(--rose); }
+  .nb.dk:hover { background: rgba(232,180,200,.15); color: #f9eef4; }
+  .nb:disabled { opacity: .3; cursor: default; transform: none !important; }
+  .pl { font-size: 12px; color: var(--muted); font-weight: 400; letter-spacing: .05em; }
+  .pl.lt { color: rgba(232,180,200,.5); }
+
+  @media (max-width: 480px) {
+    html, body { padding: 1rem .75rem 3rem; }
+    .panel { padding: 2.5rem 1.5rem; }
+    .panel-cover { padding: 3rem 1.5rem 2.5rem; }
+    .cover-title { font-size: 40px; }
+    .big-q { font-size: 28px; }
+    .cheer-cards { grid-template-columns: 1fr; }
+    .photo-grid { grid-template-columns: 1fr; }
+    .photo-grid-bot { grid-template-columns: 1fr 1fr; }
+    .ftt { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="dots" id="dots"></div>
+
+  <!-- PAGE 1: COVER -->
+  <div class="page active" id="page-1">
+    <div class="panel panel-cover">
+      <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;" viewBox="0 0 680 480" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <ellipse cx="60" cy="80" rx="30" ry="18" fill="#e8b4c8" opacity=".22" transform="rotate(-30 60 80)"/>
+        <ellipse cx="95" cy="48" rx="22" ry="13" fill="#c4728f" opacity=".13" transform="rotate(15 95 48)"/>
+        <ellipse cx="622" cy="98" rx="28" ry="16" fill="#e8b4c8" opacity=".18" transform="rotate(40 622 98)"/>
+        <ellipse cx="645" cy="55" rx="20" ry="12" fill="#b8a9d4" opacity=".18" transform="rotate(-20 645 55)"/>
+        <ellipse cx="32" cy="385" rx="25" ry="15" fill="#b8a9d4" opacity=".16" transform="rotate(25 32 385)"/>
+        <ellipse cx="648" cy="398" rx="32" ry="18" fill="#e8b4c8" opacity=".18" transform="rotate(-35 648 398)"/>
+        <circle cx="340" cy="28" r="4" fill="#c4728f" opacity=".22"/>
+        <circle cx="162" cy="443" r="5" fill="#b8a9d4" opacity=".18"/>
+        <circle cx="518" cy="442" r="3" fill="#e8b4c8" opacity=".28"/>
+        <ellipse cx="340" cy="465" rx="145" ry="7" fill="#e8b4c8" opacity=".1"/>
+      </svg>
+      <div style="position:relative;z-index:1;">
+        <div class="cover-tag">For my non-blood sister</div>
+        <div class="cover-title">To my<br><em>Dearest Sis</em></div>
+        <div style="height:1.2rem;"></div>
+        <div class="cover-sub">
+          Some bonds aren't written in blood —<br>
+          they're written in late nights, shared laughter,<br>
+          and the quiet comfort of just being there.
+        </div>
+        <div class="heart-row">
+          <div class="hline"></div>
+          <div class="heart">♥</div>
+          <div class="hline"></div>
+        </div>
+        <div class="cover-sign">A card made with all the love in the world</div>
+      </div>
+    </div>
+    <div class="nav">
+      <button class="nb" disabled>← Back</button>
+      <span class="pl">1 of 6</span>
+      <button class="nb" onclick="go(1)">Next →</button>
+    </div>
+  </div>
+
+  <!-- PAGE 2: ALWAYS THERE -->
+  <div class="page" id="page-2">
+    <div class="panel panel-always">
+      <div class="deco-circle" style="width:300px;height:300px;right:-80px;top:-80px;"></div>
+      <div class="deco-circle" style="width:180px;height:180px;left:-60px;bottom:-60px;"></div>
+      <div class="page-header" style="color:var(--sage);">A reason I love you</div>
+      <div class="big-q" style="color:var(--ink);">You are <em style="color:var(--sage);">always,</em><br>always there.</div>
+      <div class="btext">No matter the hour, no matter how messy life gets — you show up. Not because you have to, but because that's just who you are. When the world felt too heavy to carry alone, I looked up and you were already there, ready to help me hold it.</div>
+      <div class="accent-block">
+        <div class="accent-text">"Being there for someone isn't about having the right words. It's about refusing to let them stand alone. And you've never once let me stand alone."</div>
+      </div>
+    </div>
+    <div class="nav">
+      <button class="nb" onclick="go(-1)">← Back</button>
+      <span class="pl">2 of 6</span>
+      <button class="nb" onclick="go(1)">Next →</button>
+    </div>
+  </div>
+
+  <!-- PAGE 3: CHEERLEADER -->
+  <div class="page" id="page-3">
+    <div class="panel panel-cheer">
+      <div class="sparkle" style="width:12px;height:12px;background:var(--gold);right:60px;top:50px;opacity:.3;animation-delay:0s;"></div>
+      <div class="sparkle" style="width:8px;height:8px;background:var(--rose);right:100px;top:90px;opacity:.25;animation-delay:1s;"></div>
+      <div class="sparkle" style="width:6px;height:6px;background:var(--gold);left:40px;bottom:60px;opacity:.3;animation-delay:.5s;"></div>
+      <div class="star-row">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <div class="big-q">You are my<br><span style="color:var(--gold);">loudest cheerleader.</span></div>
+      <div class="btext" style="font-size:14px;">Before I believed in myself, you believed in me. You never let me shrink. You clapped the loudest at my wins and held my hand through my failures — no judgment, just faith.</div>
+      <div class="cheer-cards">
+        <div class="cheer-card"><div class="cn">01</div><div class="ct">You celebrate my wins like they're your own — with your whole heart.</div></div>
+        <div class="cheer-card"><div class="cn">02</div><div class="ct">You remind me of my strength when I forget it exists.</div></div>
+        <div class="cheer-card"><div class="cn">03</div><div class="ct">Your belief in me has pushed me further than I thought possible.</div></div>
+        <div class="cheer-card"><div class="cn">04</div><div class="ct">You never let me give up — even when I desperately want to.</div></div>
+      </div>
+    </div>
+    <div class="nav">
+      <button class="nb" onclick="go(-1)">← Back</button>
+      <span class="pl">3 of 6</span>
+      <button class="nb" onclick="go(1)">Next →</button>
+    </div>
+  </div>
+
+  <!-- PAGE 4: MEMORIES -->
+  <div class="page" id="page-4">
+    <div class="panel panel-memories">
+      <div class="page-header" style="color:var(--lavender);">Our story</div>
+      <div class="big-q">Moments I'll<br>keep <em style="color:var(--lavender);">forever</em></div>
+      <div style="font-size:14px;color:var(--muted);font-weight:300;margin-bottom:1.8rem;">The little things that became everything.</div>
+      <div class="moments">
+        <div class="moment">
+          <div class="mi">🌙</div>
+          <div class="mt"><strong>The late-night talks</strong>The conversations that started at midnight and ended at dawn — where we figured out life, laughed until we hurt, and said the truest things we knew.</div>
+        </div>
+        <div class="moment">
+          <div class="mi">🌿</div>
+          <div class="mt"><strong>Being there without being asked</strong>You always seemed to know when something was wrong, even before I said a word. That quiet knowing — that's a rare and beautiful gift.</div>
+        </div>
+        <div class="moment">
+          <div class="mi">✨</div>
+          <div class="mt"><strong>Growing together</strong>We've changed, both of us. And yet somehow, through every version of ourselves, we've stayed. That's not luck — that's love.</div>
+        </div>
+      </div>
+    </div>
+    <div class="nav">
+      <button class="nb" onclick="go(-1)">← Back</button>
+      <span class="pl">4 of 6</span>
+      <button class="nb" onclick="go(1)">Next →</button>
+    </div>
+  </div>
+
+  <!-- PAGE 5: PHOTOS -->
+  <div class="page" id="page-5">
+    <div class="panel panel-photos">
+      <div class="page-header" style="color:var(--rose-deep);">Our pictures</div>
+      <div class="photo-title">Us, in <em>every frame</em></div>
+      <div class="photo-sub">Tap any frame to add your own photos together.</div>
+
+      <div class="photo-grid">
+        <div class="frame">
+          <img src="photo1.jpg" alt="Our favourite photo" class="photo-added" onerror="this.style.display='none';document.getElementById('fb0').style.display='flex';">
+          <div class="frame-inner tall" id="fb0" style="display:none;">
+            <div class="frame-icon">📷</div>
+            <div class="frame-label">Our favourite photo</div>
+            <div class="frame-hint">Replace src with your image path</div>
+          </div>
+          <div class="frame-tag">📸 Photo 1</div>
+        </div>
+        <div class="frame">
+          <img src="photo2.jpg" alt="A silly moment" class="photo-added" onerror="this.style.display='none';document.getElementById('fb1').style.display='flex';">
+          <div class="frame-inner tall" id="fb1" style="display:none;">
+            <div class="frame-icon">🤣</div>
+            <div class="frame-label">A silly moment</div>
+            <div class="frame-hint">Replace src with your image path</div>
+          </div>
+          <div class="frame-tag">📸 Photo 2</div>
+        </div>
+      </div>
+
+      <div class="photo-grid-bot">
+        <div class="frame">
+          <img src="photo3.jpg" alt="A special day" class="photo-added" onerror="this.style.display='none';document.getElementById('fb2').style.display='flex';">
+          <div class="frame-inner short" id="fb2" style="display:none;">
+            <div class="frame-icon" style="font-size:22px;">⭐</div>
+            <div class="frame-label">A special day</div>
+            <div class="frame-hint">Replace src</div>
+          </div>
+          <div class="frame-tag">📸 Photo 3</div>
+        </div>
+        <div class="frame">
+          <img src="photo4.jpg" alt="A quiet memory" class="photo-added" onerror="this.style.display='none';document.getElementById('fb3').style.display='flex';">
+          <div class="frame-inner short" id="fb3" style="display:none;">
+            <div class="frame-icon" style="font-size:22px;">🌙</div>
+            <div class="frame-label">A quiet memory</div>
+            <div class="frame-hint">Replace src</div>
+          </div>
+          <div class="frame-tag">📸 Photo 4</div>
+        </div>
+        <div class="frame">
+          <img src="photo5.jpg" alt="Just us being us" class="photo-added" onerror="this.style.display='none';document.getElementById('fb4').style.display='flex';">
+          <div class="frame-inner short" id="fb4" style="display:none;">
+            <div class="frame-icon" style="font-size:22px;">🌸</div>
+            <div class="frame-label">Just us being us</div>
+            <div class="frame-hint">Replace src</div>
+          </div>
+          <div class="frame-tag">📸 Photo 5</div>
+        </div>
+      </div>
+
+      <div class="upload-hint">
+        <p>Upload your photos to the same GitHub folder and rename them <strong>photo1.jpg</strong> through <strong>photo5.jpg</strong> — or update each <code>src</code> attribute with your own filenames or URLs.</p>
+      </div>
+    </div>
+    <div class="nav">
+      <button class="nb" onclick="go(-1)">← Back</button>
+      <span class="pl">5 of 6</span>
+      <button class="nb" onclick="go(1)">Next →</button>
+    </div>
+  </div>
+
+  <!-- PAGE 6: FINAL -->
+  <div class="page" id="page-6">
+    <div class="panel panel-final">
+      <div class="final-glow"></div>
+      <div class="fi">
+        <div class="ft">Always &amp; forever</div>
+        <div class="ftt">I choose you,<br><em>every single time.</em></div>
+        <div class="fb">Blood didn't make us sisters. Life did. And I wouldn't trade this bond for anything. Thank you for being exactly who you are — for me, with me, always. You are one of the greatest gifts I've ever been given.</div>
+        <div class="ytb">
+          <div class="ytl">✍ Your personal note to her</div>
+          <textarea class="yti" rows="4" placeholder="Write something only you two would understand... a memory, a word, a little something from the heart ♥"></textarea>
+        </div>
+        <div class="fhearts">
+          <div class="fh">♥</div>
+          <div class="fh">♥</div>
+          <div class="fh">♥</div>
+        </div>
+        <div class="fsign">— your forever sis 🌸</div>
+      </div>
+    </div>
+    <div class="nav">
+      <button class="nb dk" onclick="go(-1)">← Back</button>
+      <span class="pl lt">6 of 6</span>
+      <button class="nb dk" disabled style="opacity:.3;cursor:default;">The end ♥</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let cur = 1;
+  const total = 6;
+  const dotsEl = document.getElementById('dots');
+
+  for (let i = 1; i <= total; i++) {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 1 ? ' active' : '');
+    d.setAttribute('aria-label', 'Go to page ' + i);
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  }
+
+  function goTo(n) {
+    document.getElementById('page-' + cur).classList.remove('active');
+    dotsEl.children[cur - 1].classList.remove('active');
+    cur = n;
+    document.getElementById('page-' + cur).classList.add('active');
+    dotsEl.children[cur - 1].classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function go(d) {
+    const n = cur + d;
+    if (n < 1 || n > total) return;
+    goTo(n);
+  }
+
+
+</script>
+</body>
+</html>
